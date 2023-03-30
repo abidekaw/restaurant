@@ -28,16 +28,22 @@ export default function Home({ menuList, admin }) {
 export const getServerSideProps = async (ctx) => {
    const myCookie = ctx.req?.cookies || '';
    let admin = false;
+   let menuList = [];
 
-   if (myCookie.token === process.env.TOKEN) {
-      admin = true;
+   try {
+      if (myCookie.token === process.env.TOKEN) {
+         admin = true;
+      }
+
+      const res = await axios.get('http://localhost:3000/api/products');
+      menuList = res.data;
+   } catch (error) {
+      console.log(error);
    }
 
-   const res = await axios.get('http://localhost:3000/api/products');
-   console.log(res.data);
    return {
       props: {
-         menuList: res.data,
+         menuList,
          admin,
       },
    };

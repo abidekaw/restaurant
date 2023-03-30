@@ -97,7 +97,7 @@ const Product = ({ menu }) => {
 
 export const getServerSideProps = async ({ params }) => {
    const res = await axios.get(
-      `https://restaurant-abidekaw.vercel.app/api/products/${params.id}`
+      `http://restaurant-abidekaw.vercel.app/api/products/${params.id}`
    );
    return {
       props: {

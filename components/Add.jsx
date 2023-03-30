@@ -45,7 +45,7 @@ const Add = ({ setClose }) => {
          };
 
          await axios.post(
-            'https://restaurant-abidekaw.vercel.app/api/products',
+            'http://restaurant-abidekaw.vercel.app/api/products',
             newProduct
          );
          setClose(true);

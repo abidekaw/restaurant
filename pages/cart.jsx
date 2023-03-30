@@ -25,7 +25,7 @@ const Cart = () => {
    const createOrder = async (data) => {
       try {
          const res = await axios.post(
-            'https://restaurant-abidekaw.vercel.app/api/orders',
+            'http://restaurant-abidekaw.vercel.app/api/orders',
             data
          );
          if (res.status === 201) {

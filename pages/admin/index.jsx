@@ -12,7 +12,7 @@ const Index = ({ orders, products }) => {
       // console.log(id);
       try {
          const res = await axios.delete(
-            'https://restaurant-abidekaw.vercel.app/api/products/' + id
+            'http://restaurant-abidekaw.vercel.app/api/products/' + id
          );
          setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
       } catch (err) {
@@ -26,7 +26,7 @@ const Index = ({ orders, products }) => {
 
       try {
          const res = await axios.put(
-            'https://restaurant-abidekaw.vercel.app/api/orders/' + id,
+            'http://restaurant-abidekaw.vercel.app/api/orders/' + id,
             {
                status: currentStatus + 1,
             }
@@ -137,10 +137,10 @@ export const getServerSideProps = async (ctx) => {
    }
 
    const productRes = await axios.get(
-      'https://restaurant-abidekaw.vercel.app/api/products'
+      'http://restaurant-abidekaw.vercel.app/api/products'
    );
    const orderRes = await axios.get(
-      'https://restaurant-abidekaw.vercel.app/api/orders'
+      'http://restaurant-abidekaw.vercel.app/api/orders'
    );
 
    return {

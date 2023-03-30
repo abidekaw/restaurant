@@ -36,7 +36,7 @@ export const getServerSideProps = async (ctx) => {
       }
 
       const res = await axios.get(
-         'https://restaurant-abidekaw.vercel.app/api/products'
+         'http://restaurant-abidekaw.vercel.app/api/products'
       );
       menuList = res.data;
    } catch (error) {

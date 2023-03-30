@@ -1,0 +1,20 @@
+.container {
+   height: 50px;
+   background-color: #000;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #fff;
+   font-size: 24px;
+   font-family: sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+   .container {
+      height: auto;
+      text-align: center;
+   }
+   .item {
+      font-size: 20px;
+   }
+}

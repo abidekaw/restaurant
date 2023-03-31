@@ -34,68 +34,68 @@ const Cart = () => {
       }
    };
 
-   // Custom component to wrap the PayPalButtons and handle currency changes
-   const ButtonWrapper = ({ currency, showSpinner }) => {
-      // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
-      // This is the main reason to wrap the PayPalButtons in a new component
-      const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+   // // Custom component to wrap the PayPalButtons and handle currency changes
+   // const ButtonWrapper = ({ currency, showSpinner }) => {
+   //    // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
+   //    // This is the main reason to wrap the PayPalButtons in a new component
+   //    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
-      useEffect(() => {
-         dispatch({
-            type: 'resetOptions',
-            value: {
-               ...options,
-               currency: currency,
-            },
-         });
-      }, [currency, showSpinner]);
+   //    useEffect(() => {
+   //       dispatch({
+   //          type: 'resetOptions',
+   //          value: {
+   //             ...options,
+   //             currency: currency,
+   //          },
+   //       });
+   //    }, [currency, showSpinner, options, dispatch]);
 
-      return (
-         <>
-            {showSpinner && isPending && <div className="spinner" />}
-            <PayPalButtons
-               style={style}
-               disabled={false}
-               forceReRender={[amount, currency, style]}
-               fundingSource={undefined}
-               createOrder={(data, actions) => {
-                  return actions.order
-                     .create({
-                        purchase_units: [
-                           {
-                              amount: {
-                                 currency_code: currency,
-                                 value: amount,
-                              },
-                           },
-                        ],
-                     })
-                     .then((orderId) => {
-                        // Your code here after create the order
-                        return orderId;
-                     });
-               }}
-               onApprove={function (data, actions) {
-                  return actions.order.capture().then(function (details) {
-                     const shipping = details.purchase_units[0].shipping;
-                     createOrder({
-                        customer: shipping.name.full_name,
-                        address: shipping.address.address_line_1,
-                        total: cart.total,
-                        method: 1,
-                     });
-                  });
-               }}
-            />
-         </>
-      );
-   };
+   //    return (
+   //       <>
+   //          {showSpinner && isPending && <div className="spinner" />}
+   //          <PayPalButtons
+   //             style={style}
+   //             disabled={false}
+   //             forceReRender={[amount, currency, style]}
+   //             fundingSource={undefined}
+   //             createOrder={(data, actions) => {
+   //                return actions.order
+   //                   .create({
+   //                      purchase_units: [
+   //                         {
+   //                            amount: {
+   //                               currency_code: currency,
+   //                               value: amount,
+   //                            },
+   //                         },
+   //                      ],
+   //                   })
+   //                   .then((orderId) => {
+   //                      // Your code here after create the order
+   //                      return orderId;
+   //                   });
+   //             }}
+   //             onApprove={function (data, actions) {
+   //                return actions.order.capture().then(function (details) {
+   //                   const shipping = details.purchase_units[0].shipping;
+   //                   createOrder({
+   //                      customer: shipping.name.full_name,
+   //                      address: shipping.address.address_line_1,
+   //                      total: cart.total,
+   //                      method: 1,
+   //                   });
+   //                });
+   //             }}
+   //          />
+   //       </>
+   //    );
+   // };
 
    return (
       <div className={styles.container}>
          <div className={styles.left}>
             <table className={styles.table}>
-               <tbody>
+               <thead>
                   <tr className={styles.trTitle}>
                      <th>Produk</th>
                      <th>Nama</th>
@@ -104,7 +104,7 @@ const Cart = () => {
                      <th>Jumlah</th>
                      <th>Total Harga</th>
                   </tr>
-               </tbody>
+               </thead>
                <tbody>
                   {cart.products.map((product) => (
                      <tr className={styles.tr} key={product._id}>
@@ -169,7 +169,7 @@ const Cart = () => {
                      >
                         BAYAR DITEMPAT
                      </button>
-                     <PayPalScriptProvider
+                     {/* <PayPalScriptProvider
                         options={{
                            'client-id':
                               'ATTL8fDJKfGzXNH4VVuDy1qW4_Jm8S0sqmnUTeYtWpqxUJLnXIn90V8YIGDg-SNPaB70Hg4mko_fde4-',
@@ -182,7 +182,7 @@ const Cart = () => {
                            currency={currency}
                            showSpinner={false}
                         />
-                     </PayPalScriptProvider>
+                     </PayPalScriptProvider> */}
                   </div>
                ) : (
                   <button

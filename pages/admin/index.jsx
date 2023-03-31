@@ -42,7 +42,7 @@ const Index = ({ orders, products }) => {
          <div className={styles.item}>
             <h1 className={styles.title}>Products</h1>
             <table className={styles.table}>
-               <tbody>
+               <thead>
                   <tr className={styles.trTitle}>
                      <th>Image</th>
                      <th>Id</th>
@@ -50,7 +50,7 @@ const Index = ({ orders, products }) => {
                      <th>Price</th>
                      <th>Action</th>
                   </tr>
-               </tbody>
+               </thead>
                {pizzaList.map((product) => (
                   <tbody key={product._id}>
                      <tr className={styles.trTitle}>

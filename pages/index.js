@@ -8,8 +8,9 @@ import Featured from '../components/Featured';
 import MenuList from '../components/MenuList';
 import styles from '../styles/Home.module.css';
 
-export default function Home({ menuList, admin }) {
+const Home = ({ menuList, admin }) => {
    const [close, setClose] = useState(true);
+
    return (
       <div className={styles.container}>
          <Head>
@@ -23,28 +24,23 @@ export default function Home({ menuList, admin }) {
          {!close && <Add setClose={setClose} />}
       </div>
    );
-}
+};
 
-export const getServerSideProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
    const myCookie = ctx.req?.cookies || '';
    let admin = false;
-   let menuList = [];
 
-   try {
-      if (myCookie.token === process.env.TOKEN) {
-         admin = true;
-      }
-
-      const res = await axios.get('http://localhost:3000/api/products');
-      menuList = res.data;
-   } catch (error) {
-      console.log(error);
+   if (myCookie.token === process.env.TOKEN) {
+      admin = true;
    }
 
+   const res = await axios.get('http://localhost:3000/api/products');
    return {
       props: {
-         menuList,
+         menuList: res.data,
          admin,
       },
    };
-};
+}
+
+export default Home;

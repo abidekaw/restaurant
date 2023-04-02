@@ -1,5 +1,5 @@
 .container {
-   padding: 20px 10px;
+   padding: 20px 50px;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -14,19 +14,23 @@
 }
 
 .wrapper {
-   width: 100%;
    display: flex;
-   align-items: center;
-   justify-content: center;
+   justify-content: space-between;
    flex-wrap: wrap;
-   gap: 10px;
+   row-gap: 20px;
+   column-gap: 5px;
+   margin-top: 30px;
+   margin-bottom: 30px;
 }
 
 @media screen and (max-width: 480px) {
+   .container {
+      padding-left: 30px;
+      padding-right: 30px;
+   }
    .title {
       text-align: center;
    }
-
    .desc {
       width: 90%;
       text-align: center;

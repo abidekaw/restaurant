@@ -1,6 +1,11 @@
+.wrapperMainAddBtn {
+   padding-left: 50px;
+   padding-right: 50px;
+}
+
 .mainAddButton {
    padding: 10px;
-   margin: 20px;
+   margin: 20px 0;
    background-color: #000;
    width: 150px;
    border-radius: 10px;
@@ -106,4 +111,11 @@
    cursor: pointer;
    padding: 5px 0;
    align-self: flex-end;
+}
+
+@media screen and (max-width: 480px) {
+   .wrapperMainAddBtn {
+      padding-left: 30px;
+      padding-right: 30px;
+   }
 }

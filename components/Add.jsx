@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 
 const Add = ({ setClose }) => {
    const [file, setFile] = useState(null);
@@ -44,10 +43,7 @@ const Add = ({ setClose }) => {
             img: url,
          };
 
-         await axios.post(
-            'https://restaurant-abidekaw.vercel.app/api/products',
-            newProduct
-         );
+         await axios.post(`${process.env.URL}/api/products`, newProduct);
          setClose(true);
       } catch (err) {
          console.log(err);

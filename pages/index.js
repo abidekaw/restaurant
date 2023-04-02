@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Head from 'next/head';
-import Image from 'next/image';
 import { useState } from 'react';
 import Add from '../components/Add';
 import AddButton from '../components/AddButton';
@@ -19,7 +18,7 @@ const Home = ({ menuList, admin }) => {
             <link rel="icon" href="/favicon.ico" />
          </Head>
          <Featured />
-         {<AddButton setClose={setClose} />}
+         <AddButton setClose={setClose} />
          <MenuList menuList={menuList} />
          {!close && <Add setClose={setClose} />}
       </div>
@@ -34,9 +33,7 @@ export async function getServerSideProps(ctx) {
       admin = true;
    }
 
-   const res = await axios.get(
-      'https://restaurant-abidekaw.vercel.app/api/products'
-   );
+   const res = await axios.get(`${process.env.URL}/api/products`);
    return {
       props: {
          menuList: res.data,

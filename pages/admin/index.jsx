@@ -12,7 +12,7 @@ const Index = ({ orders, products }) => {
       // console.log(id);
       try {
          const res = await axios.delete(
-            'https://restaurant-abidekaw.vercel.app/api/products/' + id
+            `${process.env.URL}/api/products/${id}`
          );
          setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
       } catch (err) {
@@ -25,12 +25,9 @@ const Index = ({ orders, products }) => {
       const currentStatus = item.status;
 
       try {
-         const res = await axios.put(
-            'https://restaurant-abidekaw.vercel.app/api/orders/' + id,
-            {
-               status: currentStatus + 1,
-            }
-         );
+         const res = await axios.put(`${process.env.URL}/api/orders/${id}`, {
+            status: currentStatus + 1,
+         });
          setOrderList([
             res.data,
             ...orderList.filter((order) => order._id !== id),
@@ -136,12 +133,8 @@ export const getServerSideProps = async (ctx) => {
       };
    }
 
-   const productRes = await axios.get(
-      'https://restaurant-abidekaw.vercel.app/api/products'
-   );
-   const orderRes = await axios.get(
-      'https://restaurant-abidekaw.vercel.app/api/orders'
-   );
+   const productRes = await axios.get(`${process.env.URL}/api/products`);
+   const orderRes = await axios.get(`${process.env.URL}/api/orders`);
 
    return {
       props: {

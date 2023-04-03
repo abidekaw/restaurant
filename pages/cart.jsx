@@ -10,7 +10,6 @@ import Link from 'next/link';
 
 const Cart = () => {
    const cart = useSelector((state) => state.cart);
-   console.log(cart.products.length);
    const [open, setOpen] = useState(false);
    const [cash, setCash] = useState(false);
    const dispatch = useDispatch();
